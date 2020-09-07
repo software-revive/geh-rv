@@ -67,6 +67,9 @@ static void callback_menu_rotate_left (GtkMenuItem *item, gpointer data);
 static void callback_menu_rotate_right (GtkMenuItem *item, gpointer data);
 static void callback_menu_file_save (GtkMenuItem *item, gpointer data);
 static void callback_menu_file_rename (GtkMenuItem *item, gpointer data);
+static void callback_menu_view_full_mode (GtkMenuItem *item, gpointer data);
+static void callback_menu_view_slide_show_mode (GtkMenuItem *item, gpointer data);
+static void callback_menu_view_thumbnail_mode (GtkMenuItem *item, gpointer data);
 static void callback_menu_help_key_bindings (GtkMenuItem *item, gpointer data);
 static void callback_menu_help_about (GtkMenuItem *item, gpointer data);
 
@@ -474,6 +477,35 @@ ui_window_create_menu (struct ui_window *ui)
             GtkWidget *item = gtk_menu_item_new_with_label ("Save");
             g_signal_connect (item, "activate", G_CALLBACK (callback_menu_file_save), ui);
             gtk_menu_shell_append (GTK_MENU_SHELL (menu_file), item);
+        }
+    }
+
+    /* Separator */
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), gtk_separator_menu_item_new ());
+
+    /* View */
+    {
+        GtkWidget *menu_view = gtk_menu_new ();
+        GtkWidget *item = gtk_menu_item_new_with_label ("View");
+        gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), menu_view);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        {
+            GtkWidget *item = gtk_menu_item_new_with_label ("Full Image Mode");
+            g_signal_connect (item, "activate", G_CALLBACK (callback_menu_view_full_mode), ui);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu_view), item);
+        }
+
+        {
+            GtkWidget *item = gtk_menu_item_new_with_label ("Slide Show Mode");
+            g_signal_connect (item, "activate", G_CALLBACK (callback_menu_view_slide_show_mode), ui);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu_view), item);
+        }
+
+        {
+            GtkWidget *item = gtk_menu_item_new_with_label ("Thumbnail Mode");
+            g_signal_connect (item, "activate", G_CALLBACK (callback_menu_view_thumbnail_mode), ui);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu_view), item);
         }
     }
 
@@ -961,6 +993,24 @@ callback_menu_file_rename (GtkMenuItem *item, gpointer data)
     }
 
     gtk_widget_destroy (dialog);
+}
+
+void callback_menu_view_full_mode (GtkMenuItem *item, gpointer data)
+{
+    struct ui_window *ui = (struct ui_window*) data;
+    ui_window_set_mode (ui, UI_WINDOW_MODE_FULL);
+}
+
+void callback_menu_view_slide_show_mode (GtkMenuItem *item, gpointer data)
+{
+    struct ui_window *ui = (struct ui_window*) data;
+    ui_window_set_mode (ui, UI_WINDOW_MODE_SLIDE);
+}
+
+void callback_menu_view_thumbnail_mode (GtkMenuItem *item, gpointer data)
+{
+    struct ui_window *ui = (struct ui_window*) data;
+    ui_window_set_mode (ui, UI_WINDOW_MODE_THUMB);
 }
 
 void callback_menu_help_key_bindings (GtkMenuItem *item, gpointer data)
