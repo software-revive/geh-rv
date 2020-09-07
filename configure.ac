@@ -104,4 +104,4 @@ AM_CONDITIONAL(GTK3, test x${enable_gtk2}x${HAVE_GTK3} = xnoxyes)
 AM_CONDITIONAL(GTK2, test x$HAVE_GTK2 = xyes)
 
 dnl output makefiles
-AC_OUTPUT(Makefile doc/Makefile src/Makefile)
+AC_OUTPUT(Makefile src/Makefile)

@@ -27,7 +27,7 @@
 # Without this GNU make is required
 AUTOMAKE_OPTIONS = foreign
 
-SUBDIRS = doc src
+SUBDIRS = src
 
 distclean-local:
 	rm -f *\~ .\#*
