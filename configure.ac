@@ -23,7 +23,7 @@ dnl SOFTWARE.
 dnl
 
 dnl init autoconf / automake
-AC_INIT(geh, 0.3.0)
+AC_INIT(geh, 0.4.0)
 AC_CONFIG_SRCDIR(src/main.c)
 AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER(config.h)
