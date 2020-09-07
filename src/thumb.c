@@ -45,6 +45,7 @@
 #include "file_multi.h"
 #include "md5.h"
 #include "thumb.h"
+#include "orientation.h"
 
 /**
  * Struct used to feed information back to function generating thumbnail.
