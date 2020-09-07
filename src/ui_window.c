@@ -422,85 +422,86 @@ ui_window_add_thumbnail (struct ui_window *ui, struct file_multi *file, GdkPixbu
 GtkWidget*
 ui_window_create_menu (struct ui_window *ui)
 {
-    GtkWidget *menu, *menu_file;
-    GtkWidget *item;
-
-    /* Create menu */
-    menu = gtk_menu_new ();
+    GtkWidget *menu = gtk_menu_new ();
 
     /* Zoom Original */
-    item = gtk_menu_item_new_with_label ("Zoom Orig");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_zoom_orig), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-
+    {
+        GtkWidget *item = gtk_menu_item_new_with_label ("Zoom Orig");
+        g_signal_connect (item, "activate", G_CALLBACK (callback_menu_zoom_orig), ui);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
 
     /* Zoom fit */
-    item = gtk_menu_item_new_with_label ("Zoom Fit");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_zoom_fit), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    {
+        GtkWidget *item = gtk_menu_item_new_with_label ("Zoom Fit");
+        g_signal_connect (item, "activate", G_CALLBACK (callback_menu_zoom_fit), ui);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
 
     /* Zoom in */
-    item = gtk_menu_item_new_with_label ("Zoom In");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_zoom_in), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    {
+        GtkWidget *item = gtk_menu_item_new_with_label ("Zoom In");
+        g_signal_connect (item, "activate", G_CALLBACK (callback_menu_zoom_in), ui);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
 
     /* Zoom out */
-    item = gtk_menu_item_new_with_label ("Zoom Out");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_zoom_out), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    {
+        GtkWidget *item = gtk_menu_item_new_with_label ("Zoom Out");
+        g_signal_connect (item, "activate", G_CALLBACK (callback_menu_zoom_out), ui);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
 
     /* Separator */
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu),
-                           gtk_separator_menu_item_new ());
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), gtk_separator_menu_item_new ());
 
     /* Rotate left */
-    item = gtk_menu_item_new_with_label ("Rotate Left");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_rotate_left), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    {
+        GtkWidget *item = gtk_menu_item_new_with_label ("Rotate Left");
+        g_signal_connect (item, "activate", G_CALLBACK (callback_menu_rotate_left), ui);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
 
     /* Rotate right */
-    item = gtk_menu_item_new_with_label ("Rotate Right");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_rotate_right), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    {
+        GtkWidget *item = gtk_menu_item_new_with_label ("Rotate Right");
+        g_signal_connect (item, "activate", G_CALLBACK (callback_menu_rotate_right), ui);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
 
     /* Separator */
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu),
-                           gtk_separator_menu_item_new ());
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), gtk_separator_menu_item_new ());
 
-    /* Create file operation menu */
-    menu_file = gtk_menu_new ();
+    /* File operation menu */
+    {
+        GtkWidget *menu_file = gtk_menu_new ();
+        GtkWidget *item = gtk_menu_item_new_with_label ("File");
+        gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), menu_file);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
-    item = gtk_menu_item_new_with_label ("Rename");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_file_rename), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu_file), item);
+        {
+            GtkWidget *item = gtk_menu_item_new_with_label ("Rename");
+            g_signal_connect (item, "activate", G_CALLBACK (callback_menu_file_rename), ui);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu_file), item);
+        }
 
-    item = gtk_menu_item_new_with_label ("Save");
-    g_signal_connect (item, "activate",
-                      G_CALLBACK (callback_menu_file_save), ui);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu_file), item);
-
-    item = gtk_menu_item_new_with_label ("File");
-    gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), menu_file);
-
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        {
+            GtkWidget *item = gtk_menu_item_new_with_label ("Save");
+            g_signal_connect (item, "activate", G_CALLBACK (callback_menu_file_save), ui);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu_file), item);
+        }
+    }
 
     /* Separator */
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu),
-                           gtk_separator_menu_item_new ());
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), gtk_separator_menu_item_new ());
 
     /* Quit */
-    item = gtk_menu_item_new_with_label ("Quit");
-    g_signal_connect (item, "activate", G_CALLBACK (gtk_main_quit), NULL);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    {
+        GtkWidget *item = gtk_menu_item_new_with_label ("Quit");
+        g_signal_connect (item, "activate", G_CALLBACK (gtk_main_quit), NULL);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    }
 
-    /* Show widgets */
     gtk_widget_show_all (menu);
 
     return menu;
