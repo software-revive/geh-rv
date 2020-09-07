@@ -27,7 +27,23 @@
 # Without this GNU make is required
 AUTOMAKE_OPTIONS = foreign
 
+NULL =
+
 SUBDIRS = src
+
+doc_DATA = \
+	AUTHORS \
+	ChangeLog.pre-0.4.0 \
+	LICENSE \
+	NEWS \
+	README \
+	$(NULL)
+
+EXTRA_DIST = \
+	$(doc_DATA) \
+	CMakeLists.txt \
+	$(NULL)
+
 
 distclean-local:
 	rm -f *\~ .\#*

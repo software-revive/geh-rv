@@ -25,6 +25,12 @@
 # Without this GNU make is required
 AUTOMAKE_OPTIONS = foreign
 
+NULL =
+
+EXTRA_DIST = \
+    CMakeLists.txt \
+	$(NULL)
+
 bin_PROGRAMS = geh
 geh_SOURCES = \
 	about.c about.h \
