@@ -1,4 +1,4 @@
-Geh is a simple commandline image viewer written in C/Gtk+ with
+Geh is a simple command line image viewer written in C/Gtk+ with
 various nice features. It currently supports the following modes:
 
     * Slide-show mode displaying multiple images in a row either
@@ -7,7 +7,12 @@ various nice features. It currently supports the following modes:
       i ~/.thumbnails according to freedesktop.org's thumbnail
       specification.
 
+This is a fork being developed as part of the Software Revive initiative.
+
 For more information check out the geh project page at:
+https://github.com/software-revive/geh-rv
+
+The original project URL is:
 https://projects.pekdon.net/projects/geh
 
 == Usage ==
