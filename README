@@ -15,7 +15,26 @@ https://github.com/software-revive/geh-rv
 The original project URL is:
 https://projects.pekdon.net/projects/geh
 
+=== Installation ===
+
+Geh can be build with gtk2 or gtk3.
+
+To build the gtk2 version, run:
+
+    ./confugure --prefix=<your installation path> --enable-gtk2
+    make && make install
+
+To build the gtk3 version, run:
+
+    ./confugure --prefix=<your installation path> --disable-gtk2
+    make && make install
+
+Geh compiles to a single binary. No additional dependencies, just the standard
+gtk-related shared libraries (pixbuf, gtk2/3, pango, cairo etc).
+
 == Usage ==
+
+See the output of `geh --help` for detals.
 
 === Keybindings ===
 
