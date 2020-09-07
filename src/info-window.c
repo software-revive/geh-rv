@@ -25,13 +25,14 @@
 
 #include "info-window.h"
 #include <gdk/gdkkeysyms.h>
+#include "gtk-compat.h"
 
 static gboolean on_info_window_key_press_event(
     GtkWidget * widget,
     GdkEventKey * event,
     gpointer user_data)
 {
-    if (event->keyval == GDK_Escape)
+    if (event->keyval == GDK_KEY_Escape)
     {
         gtk_widget_hide (widget);
         gtk_widget_destroy (widget);
@@ -75,7 +76,11 @@ GtkWidget * create_info_window (GtkWindow * parent, const char * title, const ch
 
 
     PangoFontDescription * font_desc = pango_font_description_from_string ("Monospace");
+#if GTK_CHECK_VERSION(3, 0, 0)
+    gtk_widget_override_font (text_view, font_desc);
+#else
     gtk_widget_modify_font (text_view, font_desc);
+#endif
     pango_font_description_free (font_desc);
 
     GtkTextBuffer *buffer = gtk_text_buffer_new (NULL);
