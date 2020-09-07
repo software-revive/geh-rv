@@ -55,6 +55,9 @@ struct _options {
     gboolean recursive; /**< Recursive directory scanning. */
     guint levels; /**< Level of recursion. */
 
+    gboolean version;
+    gboolean about;
+
     gchar **files; /**< List containing all files given as arguments. */
 };
 

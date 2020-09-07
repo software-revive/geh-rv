@@ -37,6 +37,7 @@
 
 #include "geh.h"
 
+#include "about.h"
 #include "dir.h"
 #include "file_fetch.h"
 #include "file_multi.h"
@@ -56,6 +57,8 @@ struct _options options = {
     128 /* thumb_side */,
     FALSE /* recursive */,
     -1 /* levels */,
+    FALSE /* version */,
+    FALSE /* about */,
     NULL /* files */
 };
 
@@ -72,6 +75,10 @@ static GOptionEntry cmdopt[] = {
     {"thumbside", 't', 0, G_OPTION_ARG_INT, &options.thumb_side, "Thumbnail size in pixels"},
     {"timeout", 'T', 0, G_OPTION_ARG_INT, &options.timeout, "Display window for seconds"},
     {"width", 'W', 0, G_OPTION_ARG_INT, &options.win_width, "Window width"},
+    {"version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &options.version,
+        "Print version information and exit", NULL },
+    {"about",   'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &options.about,
+        "Print copyright notice, license and other information about the program", NULL },
     { G_OPTION_REMAINING, ' ', 0, G_OPTION_ARG_FILENAME_ARRAY, &options.files, "" },
     { NULL }
 };
@@ -109,7 +116,8 @@ void
 main_print_usage (void)
 {
     g_fprintf (stderr, "Usage: geh [-bclmrst] [FILE]...\n");
-    g_fprintf (stderr, "Display images and set background image\n");
+    g_fprintf (stderr, "A GTK+-powered image viewer.\n");
+    g_fprintf (stderr, "Run geh --help and geh --about for more details.\n");
 }
 
 /**
@@ -149,6 +157,18 @@ main (int argc, char *argv[])
     g_option_context_add_group (context, gtk_get_option_group (TRUE));
     g_option_context_parse (context, &argc, &argv, NULL);
     g_option_context_free (context);
+
+    if (options.version) {
+        printf ("%s %s\n", "geh", VERSION);
+        return 0;
+    }
+
+    if (options.about) {
+        gchar * message = get_about_message ();
+        printf ("%s", message);
+        g_free (message);
+        return 0;
+    }
 
     /* Parse _str options after command line parsing. */
     if (parse_str_options ()) {
