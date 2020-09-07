@@ -65,7 +65,7 @@ struct _options options = {
 static GOptionEntry cmdopt[] = {
     {"height", 'H', 0, G_OPTION_ARG_INT, &options.win_height, "Window height"},
     {"levels", 'l', 0, G_OPTION_ARG_INT, &options.levels, "Levels of recursion"},
-    {"mode", 'm', 0, G_OPTION_ARG_STRING, &options.mode_str, "Image display mode"},
+    {"mode", 'm', 0, G_OPTION_ARG_STRING, &options.mode_str, "Image display mode (thumb, slide, full)"},
     {"nodecor", 'n', 0, G_OPTION_ARG_NONE, &options.win_nodecor, "No decor for window"},
     {"recursive", 'r', 0, G_OPTION_ARG_NONE, &options.recursive, "Recursive directory scanning"},
     {"keep", 'k', 0, G_OPTION_ARG_NONE, &options.keep_size, "Keep image size"},
