@@ -1,0 +1,32 @@
+* geh 0.4.0 -- 2020-09-07
+
+There was a report about an abandoned gtk image viewer:
+
+    https://www.linux.org.ru/forum/development/15748300?cid=15885652
+
+The sources were located at:
+
+    https://github.com/4fury/save_them
+
+A directory name inside the archive says it's geh-0.2.0, and the version info
+in configure.ac says it's 0.3.0.
+
+So we guess it's 0.3.0, and we bump the version up to 0.4.0 for this release.
+
+* Added new entries to the right-click menu:
+
+  * View -> Full Image Mode, View -> Slide Show Mode, View -> Thumbnail Mode,
+    to switch between the view modes with mouse, not just keyboard.
+  * Help -> Key Bindings, displays the list of hot keys.
+  * Help -> About, displays the detailed info about the application, license
+    supported image formats and build environment.
+
+* Added command line options:
+  * -v, --version, prints the application version
+  * -V, --about, shows the about message (the same as in GUI)
+
+* Added files: AUTHORS, LICENSE, NEWS
+
+* Fixed few compilation warnings.
+
+* The man page removed, since it's short and not helpful.

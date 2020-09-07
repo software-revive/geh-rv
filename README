@@ -15,6 +15,13 @@ https://github.com/software-revive/geh-rv
 The original project URL is:
 https://projects.pekdon.net/projects/geh
 
+=== What's new ===
+
+See NEWS for details about changes between releases.
+
+We don't maintain the ChangeLog file (in the GNU compatible format), since
+`git log` does just the same job.
+
 === Installation ===
 
 Geh can be build with gtk2 or gtk3.
