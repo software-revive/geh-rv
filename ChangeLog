@@ -1,0 +1,97 @@
+2010-05-26  Claes Nästén  <me@pekdon.net>
+
+	* src/ui_window.c (ui_window_set_image): Use idle function to zoom
+	image to fit window giving the ui sizes time to get updated.
+
+	* src/ui_window.c (callback_key_press): Add keybindings on +, -
+	and F11 for zoom in, zoom out and fullscreen toggling.
+
+	* autogen.sh: Updated autogen script to use non-version specific
+	tools before trying with a specific version and bail out if
+	execution fails.
+
+2006-08-14  Claes Nästén  <me@pekdon.net>
+
+	* src/ui_winodw.c (ui_window_callback_menu_file_rename): Added
+	rename action to menu. Added rename to icon view, currently in
+	conflict with keybindings.
+
+2006-08-13  Claes Nästén  <me@pekdon.net>
+
+	* src/ui_window.c (ui_window_callback_menu_file_save): Added file
+	operations to menu, currently only save implemented.
+
+	* src/file_multi.c (file_multi_save): Added save functionality to
+	file_multi in order to support saving of remote fetched files in
+	ui. Added rename functionality.
+
+2006-08-11  Claes Nästén  <me@pekdon.net>
+
+	* src/dir.c (dir_scan_recursive): Now adding scanned files to
+	total count of files correcting progress bar
+
+2006-08-10  Claes Nästén  <me@pekdon.net>
+
+	* src/ui_window.c (ui_window_callback_menu_zoom_fit): Updated zoom
+	to fit to take rotation into consideration.
+
+	* src/file_queue.c (file_queue_new): Add initial reference count
+	to avoid race with dir scanner and fetch worker making the queue
+	be detected empty.
+
+	* src/main.c (main_print_usage): Added usage information and fixed
+	issue with no input parameters.
+
+	* src/file_multi.c (file_multi_fetch_wget): Added stop flag to
+	file fetching and using async spawning for process interuption.
+
+2006-08-09  Claes Nästén  <me@pekdon.net>
+
+	* src/dir.c (dir_scan_start): Move static variables of dir,
+	file_queue and file_fetch to struct dir_scan, struct file_queue
+	and struct file_fetch.
+
+	* src/file_queue.c (file_queue_pop): Updated file queue to have
+	saner locking and detection of queue end.
+
+2006-08-03  Claes Nästén  <me@pekdon.net>
+
+	* src/dir.c (dir_scan_start): Now directory scanning is done in
+	separate thread adding to the file queue to save startup time on
+	large directory scans.
+
+	* src/file_multi.c (file_multi_open): Postpone generation of name,
+	ext and uri until it is accessed.
+
+	* src/file_queue.c (file_queue_push): Added file queue for better
+	handling of directory scanning and extracted image links from HTML
+	documents.
+
+2006-08-02  Claes Nästén  <me@pekdon.net>
+
+	* src/file_fetch_img.c (file_fetch_img_extract_links): Initial
+	work on extracting image links and downloading for html documents
+	fetched.
+
+	* src/ui_window.c (ui_window_progress_progress): Initial work on
+	progress bar.
+
+2006-08-01  Claes Nästén  <me@pekdon.net>
+
+	* src/file_fetch.c (file_fetch_progress): Now the --thumbside/-t
+	options is taken in consideration.
+
+	* src/dir.c (dir_scan_recursive): Added directory scanning.
+
+	* src/ui_window.c (ui_window_callback_menu_zoom_fit): Added zoom
+	fit, needs support for rotated view as well.
+
+2006-07-21  Claes Nästén  <me@pekdon.net>
+
+	* src/ui_window.c (ui_window_set_image): Added locking of gdk when
+	setting image as it can be done from multiple threads at once.
+
+	* src/thumb.c (thumb_cache_save_create_directory): Added check for
+	and creation if necessary of thumbnail directory before saving
+	thumbnail, do not even try to save if that fails.
+

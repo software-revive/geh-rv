@@ -1,0 +1,30 @@
+Geh is a simple commandline image viewer written in C/Gtk+ with
+various nice features. It currently supports the following modes:
+
+    * Slide-show mode displaying multiple images in a row either
+      controlled by an time interval and/or mousebutton clicks.
+    * Thumbnail mode creating small thumbnail images and caching them
+      i ~/.thumbnails according to freedesktop.org's thumbnail
+      specification.
+
+For more information check out the geh project page at:
+https://projects.pekdon.net/projects/geh
+
+== Usage ==
+
+=== Keybindings ===
+
+ * f, zoom to fit.
+ * F, full mode showing only the current picture.
+ * s, slide mode showing a large picture and one row of thumbnails.
+ * S, open save picture dialog.
+ * R, open rename picture dialog.
+ * t T, thumbnail mode showing only thumbnails.
+ * q Q, quit.
+ * n N, show/select next image.
+ * p P, show/select previous image.
+ * +, zoom in current image.
+ * -, zoom out current image.
+ * 0, zoom current image to original size.
+ * F11, toggle fullscreen mode.
+
