@@ -37,7 +37,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "about.h"
 #include "geh.h"
+#include "info-window.h"
 #include "ui_window.h"
 
 /* Compatibility with older gtk+ versions */
@@ -84,6 +86,8 @@ static void callback_menu_rotate_left (GtkMenuItem *item, gpointer data);
 static void callback_menu_rotate_right (GtkMenuItem *item, gpointer data);
 static void callback_menu_file_save (GtkMenuItem *item, gpointer data);
 static void callback_menu_file_rename (GtkMenuItem *item, gpointer data);
+static void callback_menu_help_key_bindings (GtkMenuItem *item, gpointer data);
+static void callback_menu_help_about (GtkMenuItem *item, gpointer data);
 
 static void slide_next (struct ui_window *ui);
 static void slide_prev (struct ui_window *ui);
@@ -489,6 +493,29 @@ ui_window_create_menu (struct ui_window *ui)
             GtkWidget *item = gtk_menu_item_new_with_label ("Save");
             g_signal_connect (item, "activate", G_CALLBACK (callback_menu_file_save), ui);
             gtk_menu_shell_append (GTK_MENU_SHELL (menu_file), item);
+        }
+    }
+
+    /* Separator */
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), gtk_separator_menu_item_new ());
+
+    /* Help menu */
+    {
+        GtkWidget *menu_help = gtk_menu_new ();
+        GtkWidget *item = gtk_menu_item_new_with_label ("Help");
+        gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), menu_help);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+        {
+            GtkWidget *item = gtk_menu_item_new_with_label ("Key Bindings");
+            g_signal_connect (item, "activate", G_CALLBACK (callback_menu_help_key_bindings), ui);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu_help), item);
+        }
+
+        {
+            GtkWidget *item = gtk_menu_item_new_with_label ("About");
+            g_signal_connect (item, "activate", G_CALLBACK (callback_menu_help_about), ui);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu_help), item);
         }
     }
 
@@ -953,6 +980,26 @@ callback_menu_file_rename (GtkMenuItem *item, gpointer data)
     }
 
     gtk_widget_destroy (dialog);
+}
+
+void callback_menu_help_key_bindings (GtkMenuItem *item, gpointer data)
+{
+    struct ui_window *ui = (struct ui_window*) data;
+
+    gchar * message = get_key_bindings_message ();
+    GtkWidget * about_dialog = create_info_window (GTK_WINDOW (ui->window), "Key Bindings", message);
+    gtk_widget_show (about_dialog);
+    g_free(message);
+}
+
+void callback_menu_help_about (GtkMenuItem *item, gpointer data)
+{
+    struct ui_window *ui = (struct ui_window*) data;
+
+    gchar * message = get_about_message ();
+    GtkWidget * about_dialog = create_info_window (GTK_WINDOW (ui->window), "About Geh", message);
+    gtk_widget_show (about_dialog);
+    g_free(message);
 }
 
 /**

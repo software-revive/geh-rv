@@ -3,12 +3,14 @@ cmake_minimum_required(VERSION 2.8.5)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(geh_SOURCES
+  about.c
   dir.c
   file_fetch.c
   file_fetch_img.c
   file_multi.c
   file_queue.c
   image.c
+  info-window.c
   md5.c
   orientation.c
   thumb.c

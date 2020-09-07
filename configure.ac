@@ -24,6 +24,36 @@ dnl
 
 dnl init autoconf / automake
 AC_INIT(geh, 0.4.0)
+
+dnl ===================
+
+# Argument quoting is from gcc's configure
+
+# Get original configure arguments. Quote arguments with shell meta charatcers.
+CONFIGURE_ARGUMENTS=
+for ac_arg in "$0" "$@"
+do
+  case "$ac_arg" in
+  *" "*|*"	"*|*[[\[\]\~\#\$\^\&\*\(\)\{\}\\\|\;\<\>\?\']]*)
+    ac_arg=`echo "$ac_arg" | sed "s/'/'\\\\\\\\''/g"`
+    # if the argument is of the form -foo=baz, quote the baz part only
+    ac_arg=`echo "'$ac_arg'" | sed "s/^'\([[-a-zA-Z0-9]]*=\)/\\1'/"` ;;
+  *) ;;
+  esac
+  # Add the quoted argument to the list.
+  CONFIGURE_ARGUMENTS="$CONFIGURE_ARGUMENTS $ac_arg"
+done
+
+# Remove the initial space we just introduced and, as these will be
+# expanded by make, quote '$'.
+CONFIGURE_ARGUMENTS=`echo "x$CONFIGURE_ARGUMENTS" | sed -e 's/^x *//' -e 's,\\$,$$,g'`
+
+AC_SUBST(CONFIGURE_ARGUMENTS)
+AH_TEMPLATE(CONFIGURE_ARGUMENTS, [])
+AC_DEFINE_UNQUOTED(CONFIGURE_ARGUMENTS,"$CONFIGURE_ARGUMENTS", [])
+
+dnl ===================
+
 AC_CONFIG_SRCDIR(src/main.c)
 AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER(config.h)

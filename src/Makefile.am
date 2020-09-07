@@ -27,12 +27,14 @@ AUTOMAKE_OPTIONS = foreign
 
 bin_PROGRAMS = geh
 geh_SOURCES = dir.c dir.h \
+	about.c about.h \
 	file_fetch.c file_fetch.h \
 	file_fetch_img.c file_fetch_img.h \
 	file_multi.c file_multi.h \
 	file_queue.c file_queue.h \
 	geh.h \
 	image.c image.h \
+	info-window.c info-window.h\
 	md5.c md5.h \
 	orientation.c orientation.h \
 	thumb.c thumb.h \
