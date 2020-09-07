@@ -50,11 +50,11 @@ gchar * get_about_message(void)
     g_string_append (text, divider);
 
     /* FIXME: */
-    /*g_string_append_printf (text, _("Homepage: %s\n"), "");
-    g_string_append_printf (text, _("You can take the latest sources at %s\n"), "");
-    g_string_append_printf (text, _("Please report bugs and feature requests to %s.\n"), "");
+    g_string_append_printf (text, _("Homepage:\n * %s\n"), "https://software-revive.github.io/projects/");
+    g_string_append_printf (text, _("You can take the latest sources at:\n * %s\n"), "https://github.com/software-revive/geh-rv");
+    g_string_append_printf (text, _("Please report bugs and feature requests to:\n * %s\n"), "https://github.com/software-revive/geh-rv/issues");
 
-    g_string_append (text, divider);*/
+    g_string_append (text, divider);
 
     g_string_append (text, _(
         "Copyright (C) 2020 Vadim Ushakov <igeekless@gmail.com>\n"
