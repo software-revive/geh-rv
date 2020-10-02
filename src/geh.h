@@ -50,7 +50,7 @@ struct _options {
     gint win_height; /**< Width of window. */
 
     gboolean keep_size; /**< If true, do not zoom image to fit when changing. */
-    guint thumb_side; /**< Maximum size of thumbnail in pixels. */
+    guint thumb_size; /**< Maximum size of thumbnail in pixels. */
 
     gboolean recursive; /**< Recursive directory scanning. */
     guint levels; /**< Level of recursion. */
