@@ -75,6 +75,9 @@ GtkWidget * create_info_window (GtkWindow * parent, const char * title, const ch
                       NULL);
 
 
+#if GTK_CHECK_VERSION(3, 16, 0)
+    gtk_text_view_set_monospace (GTK_TEXT_VIEW(text_view), TRUE);
+#else
     PangoFontDescription * font_desc = pango_font_description_from_string ("Monospace");
 #if GTK_CHECK_VERSION(3, 0, 0)
     gtk_widget_override_font (text_view, font_desc);
@@ -82,6 +85,7 @@ GtkWidget * create_info_window (GtkWindow * parent, const char * title, const ch
     gtk_widget_modify_font (text_view, font_desc);
 #endif
     pango_font_description_free (font_desc);
+#endif
 
     GtkTextBuffer *buffer = gtk_text_buffer_new (NULL);
     gtk_text_buffer_set_text (buffer, text, -1);
