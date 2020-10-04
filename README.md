@@ -24,6 +24,10 @@ We don't maintain the ChangeLog file (in the GNU compatible format), since
 
 ## Installation
 
+If you build the program from the git source tree, run `./autogen.sh` first to
+generate the `configure` script. If you build the program from a release
+tarball, the `configure` script is already present.
+
 Geh can be built with gtk2 or gtk3.
 
 To build the gtk2 version, run:
