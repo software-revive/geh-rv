@@ -36,7 +36,7 @@ doc_DATA = \
 	ChangeLog.pre-0.4.0 \
 	LICENSE \
 	NEWS \
-	README \
+	README.md \
 	$(NULL)
 
 EXTRA_DIST = \
