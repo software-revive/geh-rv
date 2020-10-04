@@ -149,7 +149,7 @@ ui_window_new (void)
     ui->icon_view = GTK_ICON_VIEW (gtk_icon_view_new_with_model (GTK_TREE_MODEL (ui->icon_store)));
 
     /* Map fields to view */
-    gtk_icon_view_set_item_width (ui->icon_view, options.thumb_side + UI_THUMB_PADDING);
+    gtk_icon_view_set_item_width (ui->icon_view, options.thumb_size + UI_THUMB_PADDING);
     gtk_icon_view_set_pixbuf_column (ui->icon_view, UI_ICON_STORE_THUMB);
 
     /* Make names editable */
@@ -269,7 +269,7 @@ ui_window_set_mode (struct ui_window *ui, guint mode)
     } else if (mode == UI_WINDOW_MODE_SLIDE) {
         /* Slide-show mode, having a thumbnail height bottom border
            with icons */
-        pane_pos = max_pos - options.thumb_side - UI_SLIDE_PADDING;
+        pane_pos = max_pos - options.thumb_size - UI_SLIDE_PADDING;
         /* Set columns to display in thumbnail mode */
         gtk_icon_view_set_columns (ui->icon_view, ui->thumbnails); 
 
