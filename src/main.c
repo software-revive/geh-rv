@@ -55,6 +55,7 @@ struct _options options = {
     740 /* win_height */,
     FALSE /* keep_size */,
     128 /* thumb_size */,
+    0 /* thumb_side */,
     FALSE /* recursive */,
     -1 /* levels */,
     FALSE /* version */,
@@ -73,6 +74,7 @@ static GOptionEntry cmdopt[] = {
     {"recursive", 'r', 0, G_OPTION_ARG_NONE, &options.recursive, "Recursive directory scanning"},
     {"keep", 'k', 0, G_OPTION_ARG_NONE, &options.keep_size, "Keep image size"},
     {"thumbsize", 't', 0, G_OPTION_ARG_INT, &options.thumb_size, "Thumbnail size in pixels"},
+    {"thumbside", 't', 0, G_OPTION_ARG_INT, &options.thumb_side, "Just a synonym of --thumbsize for backward compatibility with the older versions, as there was a typo in the option name."},
     {"timeout", 'T', 0, G_OPTION_ARG_INT, &options.timeout, "Display window for seconds"},
     {"width", 'W', 0, G_OPTION_ARG_INT, &options.win_width, "Window width"},
     {"version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &options.version,
@@ -173,6 +175,10 @@ main (int argc, char *argv[])
     /* Parse _str options after command line parsing. */
     if (parse_str_options ()) {
         exit (1);
+    }
+
+    if (options.thumb_side) {
+        options.thumb_size = options.thumb_side;
     }
 
     /* Make sure there is something to do (need input files) */

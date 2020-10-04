@@ -51,6 +51,7 @@ struct _options {
 
     gboolean keep_size; /**< If true, do not zoom image to fit when changing. */
     guint thumb_size; /**< Maximum size of thumbnail in pixels. */
+    guint thumb_side; /**< Backward compatability: --thumbsize had a typo. */
 
     gboolean recursive; /**< Recursive directory scanning. */
     guint levels; /**< Level of recursion. */
