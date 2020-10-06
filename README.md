@@ -24,6 +24,13 @@ We don't maintain the ChangeLog file (in the GNU compatible format), since
 
 ## Installation
 
+### Arch Linux
+
+ - [GTK+ 2 build](https://aur.archlinux.org/packages/geh-gtk2-git)
+ - [GTK 3 build](https://aur.archlinux.org/packages/geh-git)
+
+### Manual installation
+
 If you build the program from the git source tree, run `./autogen.sh` first to
 generate the `configure` script. If you build the program from a release
 tarball, the `configure` script is already present.
